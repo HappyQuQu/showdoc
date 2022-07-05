@@ -84,7 +84,10 @@ class ExportController extends BaseController
                 $data .= '<div style="margin-left:20px;">';
                 $tmp_content = $convert->runapiToMd($value['page_content']);
                 $value['page_content'] = $tmp_content ? $tmp_content : $value['page_content'];
-                $data .= htmlspecialchars_decode($Parsedown->text($value['page_content']));
+                $ret_page_content = str_replace('<','&lt;',$value['page_content']);
+                $ret_page_content= str_replace('>','&gt;',$ret_page_content);
+
+                $data .= htmlspecialchars_decode($Parsedown->text($ret_page_content));
                 $data .= '</div>';
                 $parent++;
             }
@@ -101,7 +104,9 @@ class ExportController extends BaseController
                         $data .= '<div style="margin-left:0px;">';
                         $tmp_content = $convert->runapiToMd($page['page_content']);
                         $page['page_content'] = $tmp_content ? $tmp_content : $page['page_content'];
-                        $data .= htmlspecialchars_decode($Parsedown->text($page['page_content']));
+                        $ret_page_content = str_replace('<','&lt;',$page['page_content']);
+                        $ret_page_content= str_replace('>','&gt;',$ret_page_content);
+                        $data .= htmlspecialchars_decode($Parsedown->text($ret_page_content));
                         $data .= '</div>';
                         $child++;
                     }
@@ -109,16 +114,18 @@ class ExportController extends BaseController
                 if ($value['catalogs']) {
                     $parent2 = 1;
                     foreach ($value['catalogs'] as $key3 => $value3) {
-                        $data .= "<h2>{$parent}.{$parent2}、{$value3['cat_name']}</h2>";
+                        $data .= "<h3>{$parent}.{$parent2}、{$value3['cat_name']}</h3>";
                         $data .= '<div style="margin-left:20px;">';
                         $child2 = 1;
                         if ($value3['pages']) {
                             foreach ($value3['pages'] as $page3) {
-                                $data .= "<h3>{$parent}.{$parent2}.{$child2}、{$page3['page_title']}</h3>";
+                                $data .= "<h4>{$parent}.{$parent2}.{$child2}、{$page3['page_title']}</h4>";
                                 $data .= '<div style="margin-left:0px;">';
                                 $tmp_content = $convert->runapiToMd($page3['page_content']);
                                 $page3['page_content'] = $tmp_content ? $tmp_content : $page3['page_content'];
-                                $data .= htmlspecialchars_decode($Parsedown->text($page3['page_content']));
+                                $ret_page_content = str_replace('<','&lt;',$page3['page_content']);
+                                $ret_page_content= str_replace('>','&gt;',$ret_page_content);    
+                                $data .= htmlspecialchars_decode($Parsedown->text($ret_page_content));
                                 $data .= '</div>';
                                 $child2++;
                             }
@@ -127,16 +134,18 @@ class ExportController extends BaseController
                         if ($value3['catalogs']) {
                             $parent3 = 1;
                             foreach ($value3['catalogs'] as $key4 => $value4) {
-                                $data .= "<h2>{$parent}.{$parent2}.{$parent3}、{$value4['cat_name']}</h2>";
+                                $data .= "<h4>{$parent}.{$parent2}.{$parent3}、{$value4['cat_name']}</h4>";
                                 $data .= '<div style="margin-left:0px;">';
                                 $child3 = 1;
                                 if ($value4['pages']) {
                                     foreach ($value4['pages'] as $page4) {
-                                        $data .= "<h3>{$parent}.{$parent2}.{$parent3}.{$child3}、{$page4['page_title']}</h3>";
+                                        $data .= "<h5>{$parent}.{$parent2}.{$parent3}.{$child3}、{$page4['page_title']}</h5>";
                                         $data .= '<div style="margin-left:30px;">';
                                         $tmp_content = $convert->runapiToMd($page4['page_content']);
                                         $page4['page_content'] = $tmp_content ? $tmp_content : $page4['page_content'];
-                                        $data .= htmlspecialchars_decode($Parsedown->text($page4['page_content']));
+                                        $ret_page_content = str_replace('<','&lt;',$page4['page_content']);
+                                        $ret_page_content= str_replace('>','&gt;',$ret_page_content);  
+                                        $data .= htmlspecialchars_decode($Parsedown->text($ret_page_content));
                                         $data .= '</div>';
                                         $child3++;
                                     }
@@ -144,16 +153,18 @@ class ExportController extends BaseController
                                 if ($value4['catalogs']) {
                                     $parent4 = 1;
                                     foreach ($value4['catalogs'] as $key5 => $value5) {
-                                        $data .= "<h2>{$parent}.{$parent2}.{$parent3}.{$parent4}、{$value5['cat_name']}</h2>";
+                                        $data .= "<h5>{$parent}.{$parent2}.{$parent3}.{$parent4}、{$value5['cat_name']}</h5>";
                                         $data .= '<div style="margin-left:0px;">';
                                         $child4 = 1;
                                         if ($value4['pages']) {
                                             foreach ($value4['pages'] as $page5) {
-                                                $data .= "<h3>{$parent}.{$parent2}.{$parent3}.{$parent4}.{$child4}、{$page5['page_title']}</h3>";
+                                                $data .= "<h6>{$parent}.{$parent2}.{$parent3}.{$parent4}.{$child4}、{$page5['page_title']}</h6>";
                                                 $data .= '<div style="margin-left:30px;">';
                                                 $tmp_content = $convert->runapiToMd($page5['page_content']);
                                                 $page5['page_content'] = $tmp_content ? $tmp_content : $page5['page_content'];
-                                                $data .= htmlspecialchars_decode($Parsedown->text($page5['page_content']));
+                                                $ret_page_content = str_replace('<','&lt;',$page5['page_content']);
+                                                $ret_page_content= str_replace('>','&gt;',$ret_page_content);  
+                                                $data .= htmlspecialchars_decode($Parsedown->text($ret_page_content));
                                                 $data .= '</div>';
                                                 $child3++;
                                             }

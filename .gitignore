@@ -20,4 +20,3 @@ web_src/*.njsproj
 web_src/*.sln
 
 Sqlite/showdoc.db.php
-

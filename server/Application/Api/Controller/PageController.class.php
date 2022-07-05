@@ -91,7 +91,7 @@ class PageController extends BaseController
             return;
         }
         if ($is_urlencode) {
-            $page_content = urldecode($page_content);
+            $page_content = html_entity_decode(urldecode($page_content));
         }
         $data['page_title'] = $page_title;
         $data['page_content'] = $page_content;

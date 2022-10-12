@@ -60,7 +60,17 @@
               <i class="el-icon-s-promotion"></i>
             </a>
           </el-tooltip>
-
+          <el-tooltip
+            v-if="lang == 'zh-cn'"
+            class="item"
+            effect="dark"
+            content="CDN加速服务"
+            placement="top"
+          >
+            <a target="_blank" href="https://www.dfyun.com.cn">
+              <i class="el-icon-s-marketing"></i>
+            </a>
+          </el-tooltip>
           <el-tooltip
             class="item"
             effect="dark"
@@ -496,7 +506,7 @@ export default {
     },
 
     userInfo() {
-      getUserInfo((response)=> {
+      getUserInfo(response => {
         if (response.data.error_code === 0) {
           if (response.data.data.groupid == 1) {
             this.isAdmin = true

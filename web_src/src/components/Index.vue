@@ -3,11 +3,12 @@
     <!--header-->
     <div class="header">
       <div class="header-wrap">
-        <div class="logo">
-          <a href="/">
-            <img src="static/imgs/Logo.png" />
-          </a>
-        </div>
+        <a href="/">
+          <div class="logo">
+            <img class="logo-img" src="@/assets/Logo.svg" />
+            <span class="logo-title">ShowDoc</span>
+          </div>
+        </a>
         <input type="checkbox" name id="mobile-menu-toggle" value />
         <label class="gh" for="mobile-menu-toggle">
           <span></span>
@@ -20,7 +21,7 @@
             <li>
               <a
                 target="_blank"
-                v-if="lang == 'zh-cn'"
+                v-if="$lang == 'zh-cn'"
                 href="https://www.showdoc.cc/clients"
                 >客户端</a
               >
@@ -213,7 +214,6 @@ export default {
       height: '',
       link: '',
       link_text: '',
-      lang: '',
       beian: ''
     }
   },
@@ -252,7 +252,6 @@ export default {
     }
   },
   mounted() {
-    this.lang = DocConfig.lang
     this.getHeight()
     this.homePageSetting()
     this.link = '/user/login'

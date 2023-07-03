@@ -120,19 +120,22 @@ exports.default = {
   attorn_tips: '你可以将项目转让给他人',
   archive_tips:
     '归档后，项目将变为只读，无法再修改/新增内容。如果要重新编辑，请复制到新项目后编辑',
-  delete_tips: '删除后将不可恢复！',
+  delete_tips:
+    '警告！你现在的操作会删除整个项目，所有页面和目录数据在删除后将不可恢复！',
   attorn_username: '接受者用户名',
   archive_tips2:
-    '说明： 归档项目后，项目将无法再新增和修改内容，并且无法取消归档状态。 如想再次修改内容，可复制本项目，在新的项目基础上修改。复制项目的方法是，在创建项目的时候，选择从已有项目里复制。',
+    '说明： 归档项目后，项目将无法再新增和修改内容，并且无法取消归档状态。 如想再次修改内容，可复制本项目，在新的项目基础上修改。',
   success_jump: '操作成功！正在跳转...',
   reset_token: '重新生成api_token',
   open_api_tips1:
     'showdoc开放文档编辑的API，供使用者更加方便地操作文档数据。<br>利用开放API，你可以自动化地完成很多事',
   open_api_tips2:
-    '如果你想自动化生成API文档，则可参考<a target="_bank" href="https://www.showdoc.cc/page/741656402509783">API文档</a>',
+    '如果你想利用runapi客户端生成API文档，则可参考<a target="_bank" href="https://www.showdoc.cc/runapi">runapi介绍</a>',
   open_api_tips3:
-    '如果你想自动化生成数据字典，则可参考<a target="_bank" href="https://www.showdoc.cc/page/312209902620725">数据字典</a>',
+    '如果你想通过程序注释生成API文档，则可参考<a target="_bank" href="https://www.showdoc.cc/page/741656402509783">API文档</a>',
   open_api_tips4:
+    '如果你想自动化生成数据字典，则可参考<a target="_bank" href="https://www.showdoc.cc/page/312209902620725">数据字典</a>',
+  open_api_tips5:
     '如果你更自由地生成自己所需要的格式，则可参考<a target="_bank" href="https://www.showdoc.cc/page/102098">开放API</a>',
 
   // item/show
@@ -512,5 +515,65 @@ exports.default = {
   team_exit: '退出团队',
   team_exit_confirm: '你确认退出团队吗？退出后，你将失去改团队下所有项目权限',
 
-  expand_collapse_catalog_tips: '展开全部目录/折叠全部目录'
+  expand_collapse_catalog_tips: '展开全部目录/折叠全部目录',
+
+  edit_group: '新建/编辑分组',
+  star_items: '星标项目',
+  unstar_item: '取消星标',
+  star_item: '星标项目',
+  open_item: '打开项目',
+  user_center: '用户中心',
+  create_new_item: '创建新项目',
+  regular_item_desc: '最常见的多页在线文档',
+  single_item_desc: '无目录结构的单页文档',
+  table_item: '电子表格',
+  table_item_desc: '可用于分享的在线电子表格',
+  import_file_desc: '导入支持的项目文件',
+  auto_create: '自动生成',
+  auto_create_desc: '利用API自动化生成',
+  home_logo_title: '在线API & 技术文档',
+  group: '分组',
+  item_group_desc: '添加分组/管理分组',
+  empty_team_member_tips: '暂无成员数据。你可以尝试点击右上角以添加成员',
+  empty_team_item_tips: '暂无项目数据。你可以尝试点击右上角以绑定项目',
+
+  update_user_name_tips:
+    '请在下方输入你的身份。推荐使用真实姓名，这样在协作项目和文档的时候，其他成员容易识别你的身份',
+  accessibility: '可访问性',
+  vip: '会员',
+  default_title: '默认标题',
+  doc_tool: '文档工具',
+  add_from_template: '从模板加入',
+  click_to_edit_page_title: '点击以编辑页面标题',
+  select_catalog: '选择目录',
+  update_base_info: '修改基础信息',
+  no_member_tips: '暂无团队或者成员信息，你可以点击上方按钮以添加',
+  select_member_before: '点此快速选择之前添加过的成员名',
+  item_member: '项目成员',
+  item_team_info: '团队信息',
+
+  copy_page: '复制页面',
+  page_history_version: '页面版本',
+  page_info: '页面信息',
+  sort_page: '页面排序',
+  delete_page: '删除页面',
+  update_item_base_info: '修改项目基础信息',
+  attorn_item: '转让项目',
+  archive_item: '归档项目',
+  delete_item: '删除项目',
+  table_item_auto_save_tips: '电子表格项目会在你编辑的时候自动保存',
+  do_not_remind_again: '知道了,不用再提醒我',
+  no_items: '暂无项目',
+
+  ai_assistant: 'AI助手生成',
+
+  create: '创建',
+
+  search_keyword: '请输入搜索关键词',
+
+  add_sub_page: '添加页面',
+  add_sub_cat: '添加子文件夹',
+  add_si_bling_cat: '添加同级文件夹',
+  edt_cat: '编辑文件夹',
+  clone_move: '克隆/移动'
 }

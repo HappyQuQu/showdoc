@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-    <el-backtop></el-backtop>
+    <el-backtop right="40" bottom="40"></el-backtop>
     <Toc v-if="page_id && showToc"></Toc>
     <Footer></Footer>
     <div class></div>
@@ -35,8 +35,6 @@
 #page_md_content {
   padding: 10px 10px 90px 10px;
   overflow: hidden;
-  font-size: 11pt;
-  line-height: 1.7;
   color: #333;
 }
 
@@ -106,7 +104,7 @@ pre ol {
 
 #full-page {
   float: right;
-  font-size: 25px;
+  font-size: 18px;
   margin-top: -50px;
   margin-right: 30px;
   cursor: pointer;
@@ -117,6 +115,7 @@ pre ol {
 <script>
 import Editormd from '@/components/common/Editormd'
 import Toc from '@/components/common/Toc'
+import { rederPageContent } from '@/models/page'
 
 export default {
   data() {
@@ -139,14 +138,13 @@ export default {
   methods: {
     getPageContent() {
       var url
-      var page_id = this.$route.params.page_id ? this.$route.params.page_id : 0 
+      var page_id = this.$route.params.page_id
       var unique_key = this.$route.params.unique_key
       if (unique_key) {
         url = '/api/page/infoByKey'
       } else {
         url = '/api/page/info'
       }
-
       this.request(
         url,
         {
@@ -157,13 +155,10 @@ export default {
         false
       ).then(data => {
         if (data.error_code === 0) {
-          this.content = data.data.page_content
+          this.content = rederPageContent(data.data.page_content)
           this.page_title = data.data.page_title
           this.page_id = data.data.page_id
-        } else if (
-          data.error_code === 10307 ||
-          data.error_code === 10303
-        ) {
+        } else if (data.error_code === 10307 || data.error_code === 10303) {
           // 需要输入密码
           this.$router.replace({
             path: '/item/password/0',
@@ -173,7 +168,7 @@ export default {
             }
           })
         } else {
-          this.$alert(data.error_message)
+          alert(data.error_message)
         }
       })
     },

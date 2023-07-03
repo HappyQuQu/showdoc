@@ -1,55 +1,12 @@
 <template>
   <div class="hello grey-bg">
-    <Header></Header>
-
-    <div id="header"></div>
+    <Header id="header" :item_info="item_info">
+      <HeaderRight :item_info="item_info" :page_id="page_id"></HeaderRight>
+    </Header>
     <div class="container doc-container" id="doc-container">
       <div class="doc-title-box">
         <span id="doc-title-span" class="dn"></span>
         <h2 id="doc-title">{{ page_title }}</h2>
-
-        <div class="tool-bar pull-right">
-          <el-tooltip
-            class="item"
-            effect="dark"
-            :content="$t('goback')"
-            placement="left"
-          >
-            <router-link to="/item/index">
-              <i class="el-icon-back"></i>
-            </router-link>
-          </el-tooltip>
-          <el-tooltip
-            class="item"
-            effect="dark"
-            :content="$t('share')"
-            placement="top"
-          >
-            <i class="el-icon-share" @click="shareItem"></i>
-          </el-tooltip>
-          <el-tooltip
-            v-if="item_info.item_edit && item_info.is_archived < 1"
-            class="item"
-            effect="dark"
-            :content="$t('edit_page')"
-            placement="top"
-          >
-            <i class="el-icon-edit" @click="editPage"></i>
-          </el-tooltip>
-          <el-dropdown v-if="item_info.item_edit">
-            <span class="el-dropdown-link">
-              <i class="el-icon-caret-bottom el-icon--right"></i>
-            </span>
-            <el-dropdown-menu slot="dropdown">
-              <router-link :to="'/item/export/' + item_info.item_id">
-                <el-dropdown-item>{{ $t('export') }}</el-dropdown-item>
-              </router-link>
-              <router-link :to="'/item/setting/' + item_info.item_id">
-                <el-dropdown-item>{{ $t('item_setting') }}</el-dropdown-item>
-              </router-link>
-            </el-dropdown-menu>
-          </el-dropdown>
-        </div>
       </div>
       <div id="doc-body">
         <div id="page_md_content" class="page_content_main">
@@ -61,36 +18,44 @@
         </div>
       </div>
     </div>
-    <el-dialog
+
+    <SDialog
+      v-if="dialogVisible"
       :title="$t('share')"
-      :visible.sync="dialogVisible"
-      width="600px"
-      :close-on-click-modal="false"
-      class="text-center"
+      :onCancel="
+        () => {
+          dialogVisible = false
+        }
+      "
+      :showCancel="false"
+      :onOK="
+        () => {
+          dialogVisible = false
+        }
+      "
+      width="500px"
     >
-      <p>
-        {{ $t('item_address') }} :
-        <code>{{ share_item_link }}</code>
-      </p>
-      <p>
-        <a
-          href="javascript:;"
-          class="home-phone-butt"
-          v-clipboard:copyhttplist="copyText"
-          v-clipboard:success="onCopy"
-          >{{ $t('copy_link') }}</a
-        >
-      </p>
-      <p style="border-bottom: 1px solid #eee;">
-        <img id style="width:114px;height:114px;" :src="qr_item_link" />
-      </p>
-      <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="dialogVisible = false">{{
-          $t('confirm')
-        }}</el-button>
-      </span>
-    </el-dialog>
-    <el-backtop></el-backtop>
+      <div class="text-center">
+        <p>
+          {{ $t('item_address') }} :
+          <code>{{ share_item_link }}</code>
+        </p>
+        <p>
+          <a
+            href="javascript:;"
+            class="home-phone-butt"
+            v-clipboard:copyhttplist="copyText"
+            v-clipboard:success="onCopy"
+            >{{ $t('copy_link') }}</a
+          >
+        </p>
+        <p style="border-bottom: 1px solid #eee;">
+          <img id style="width:114px;height:114px;" :src="qr_item_link" />
+        </p>
+      </div>
+    </SDialog>
+
+    <el-backtop right="40" bottom="40"></el-backtop>
     <Toc v-if="page_id"></Toc>
     <Footer></Footer>
     <div class></div>
@@ -101,8 +66,6 @@
 #page_md_content {
   padding: 10px 10px 90px 10px;
   overflow: hidden;
-  font-size: 11pt;
-  line-height: 1.7;
   color: #333;
 }
 
@@ -121,6 +84,7 @@
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
+  margin-top: 110px;
 }
 
 #header {
@@ -178,13 +142,15 @@ a {
 .editormd-html-preview,
 .editormd-preview-container {
   padding: 0px;
-  font-size: 14px;
 }
 </style>
 
 <script>
 import Editormd from '@/components/common/Editormd'
 import Toc from '@/components/common/Toc'
+import Header from '../Header'
+import HeaderRight from './HeaderRight'
+import { rederPageContent } from '@/models/page'
 
 export default {
   props: {
@@ -204,7 +170,9 @@ export default {
   },
   components: {
     Editormd,
-    Toc
+    Toc,
+    Header,
+    HeaderRight
   },
   methods: {
     getPageContent(page_id) {
@@ -214,8 +182,9 @@ export default {
       this.request('/api/page/info', {
         page_id: page_id
       }).then(data => {
-        this.content = data.data.page_content
-        this.page_title = data.data.page_title
+        const json = data.data
+        this.content = rederPageContent(json.page_content)
+        this.page_title = json.page_title
       })
     },
 
@@ -225,7 +194,10 @@ export default {
       this.$router.push({ path: url })
     },
     shareItem() {
-      this.share_item_link = this.getRootPath() + '#/' + this.item_info.item_id
+      let path = this.item_info.item_domain
+        ? this.item_info.item_domain
+        : this.item_info.item_id
+      this.share_item_link = this.getRootPath() + '#/' + path
       this.qr_item_link =
         DocConfig.server +
         '/api/common/qrcode&size=3&url=' +
@@ -238,8 +210,9 @@ export default {
       var doc_container = document.getElementById('doc-container')
       doc_container.style.width = '95%'
       doc_container.style.padding = '5px'
+      doc_container.style.marginTop = '10px'
       var header = document.getElementById('header')
-      header.style.height = '10px'
+      header.style.display = 'none'
     },
     onCopy() {
       this.$message(this.$t('copy_success'))

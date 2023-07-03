@@ -133,18 +133,21 @@ exports.default = {
   delete_tips: 'After deleting it, it can not be restored!',
   attorn_username: 'Username of receiver',
   archive_tips2:
-    'Note: After archiving a project, the project will no longer be able to add and modify content and will not be able to unarchive. If you want to modify the content again, you can copy the project and modify it on the basis of the new project. The way to copy a project is to choose to copy from an existing project when you create the project.',
+    'Note: After archiving a project, the project will no longer be able to add and modify content and will not be able to unarchive. If you want to modify the content again, you can copy the project and modify it on the basis of the new project.',
   success_jump: 'The operation is successful! Skipping...',
   reset_token: 'Reset token',
   open_api_tips1:
     'Showdoc opens the API for document editing, making it easier for users to manipulate document data. <br>With the open API, you can do a lot of things automatically',
   open_api_tips2:
-    'If you want to automate the generation of API documentation, you can refer to<a target="_bank" href="https://www.showdoc.cc/page/741656402509783">API documentation</a>',
+    'If you want to use the runAPI client to generate API documents, you can refer to the <a target="_bank" href="https://www.showdoc.cc/runapi">runapi introduction</a>',
   open_api_tips3:
-    'If you want to automate the generation of a data dictionary, you can refer to<a target="_bank" href="https://www.showdoc.cc/page/312209902620725">Data dictionary</a>',
+    'If you want to automate the generation of API documentation, you can refer to<a target="_bank" href="https://www.showdoc.cc/page/741656402509783">API documentation</a>',
   open_api_tips4:
+    'If you want to automate the generation of a data dictionary, you can refer to<a target="_bank" href="https://www.showdoc.cc/page/312209902620725">Data dictionary</a>',
+  open_api_tips5:
     'If you are more free to generate the format you need, you can refer to<a target="_bank" href="https://www.showdoc.cc/page/102098">Open API</a>',
-  // item/show
+
+    // item/show
   item: 'Item',
   share: 'Share',
   export: 'Export',
@@ -537,5 +540,70 @@ exports.default = {
   team_exit_confirm:
     'Are you sure to quit the team? After quitting, you will lose all project permissions under the team',
 
-  expand_collapse_catalog_tips: 'Expand all catalogs / collapse all catalogs'
+  expand_collapse_catalog_tips: 'Expand all catalogs / collapse all catalogs',
+
+  edit_group: 'Create/Edit Group',
+  star_items: 'Star Items',
+  unstar_item: 'Unstar item',
+  star_item: 'Star Item',
+  open_item: 'Open Item',
+  user_center: 'User Center',
+  create_new_item: 'Create Item',
+  regular_item_desc: 'Multi-page online documents',
+  single_item_desc: 'One-page online document',
+  table_item: 'Spreadsheet',
+  table_item_desc: 'Online spreadsheets',
+  import_file_desc: 'Import supported files',
+  auto_create: 'Auto Create',
+  auto_create_desc: 'Automatic Create',
+  home_logo_title: 'Online API & Technical Documentation',
+  group: 'group',
+  item_group_desc: 'Create groups/Manage groups',
+  empty_team_member_tips:
+    'No member data. You can try to add members by clicking on the top right corner',
+  empty_team_item_tips:
+    'There is no item data. You can try to bind items by clicking the upper right corner',
+
+  update_user_name_tips:
+    'Please enter your nickname below. It is recommended to use your real name so that other members can easily identify you when collaborating on items and documents',
+
+  accessibility: 'Accessibility',
+  vip: 'Vip',
+  default_title: 'Default title',
+  doc_tool: 'Document Tools',
+  add_from_template: 'Add from template',
+  click_to_edit_page_title: 'Click to edit the page title',
+  select_catalog: 'Select catalog',
+  update_base_info: 'Update base info',
+  no_member_tips:
+    'There is no team or member information, you can click the button above to add',
+  select_member_before: 'Select the member name added before',
+  item_member: 'Item Member',
+  item_team_info: 'Team info',
+
+  copy_page: 'Copy page',
+  page_history_version: 'Page history version',
+  page_info: 'Page info',
+  sort_page: 'Sort page',
+  delete_page: 'Delete page',
+  update_item_base_info: 'Update item info',
+  attorn_item: 'Attorn item',
+  archive_item: 'Archive item',
+  delete_item: 'Delete item',
+  table_item_auto_save_tips:
+    'Spreadsheet items will be saved automatically when you edit them',
+  do_not_remind_again: 'Don not remind me again',
+  no_items: 'No items',
+
+  ai_assistant: 'Ai assistant',
+
+  create: 'Create',
+
+  search_keyword: 'Please enter search keywords',
+
+  add_sub_page: 'Add Page',
+  add_sub_cat: 'Add Sub Folder',
+  add_si_bling_cat: 'Add Peer Folder',
+  edt_cat: 'Edit Folder',
+  clone_move: 'Clone/Move'
 }

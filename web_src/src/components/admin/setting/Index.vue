@@ -33,7 +33,6 @@
       <el-form-item v-show="$lang == 'zh-cn'" label="备案号">
         <el-input v-model="form.beian" class="form-el"></el-input>
         <el-tooltip
-          class="item"
           effect="dark"
           content="设置后会展示在网站首页最下方"
           placement="top"
@@ -48,7 +47,6 @@
           class="form-el"
         ></el-input>
         <el-tooltip
-          class="item"
           effect="dark"
           :content="$t('history_version_count_content')"
           placement="top"
@@ -60,7 +58,6 @@
       <el-form-item :label="$t('watermark')">
         <el-switch v-model="form.show_watermark"></el-switch>
         <el-tooltip
-          class="item"
           effect="dark"
           :content="$t('watermark_tips')"
           placement="top"
@@ -75,12 +72,43 @@
           placeholder="https://www.your-site.com"
         ></el-input>
         <el-tooltip
-          class="item"
           effect="dark"
           :content="$t('site_url_tips')"
           placement="top"
         >
           <i class="el-icon-question"></i>
+        </el-tooltip>
+      </el-form-item>
+      <el-form-item v-show="$lang == 'zh-cn'" label="AI助手认证KEY">
+        <el-input
+          v-model="form.open_api_key"
+          class="form-el"
+          placeholder=""
+        ></el-input>
+
+        <el-tooltip effect="dark" content="点击查看填写说明" placement="top">
+          <i
+            class="el-icon-question cursor-pointer "
+            @click="
+              toOutLink(
+                'https://www.showdoc.com.cn/p/30dd0637811cd5c690ffd547f3c46889'
+              )
+            "
+          ></i>
+        </el-tooltip>
+      </el-form-item>
+      <el-form-item v-show="$lang == 'zh-cn'" label="AI助手代理HOST">
+        <el-input
+          v-model="form.open_api_host"
+          class="form-el"
+          placeholder="可选"
+        ></el-input>
+
+        <el-tooltip effect="dark" content="点击查看填写说明" placement="top">
+          <i
+            class="el-icon-question cursor-pointer "
+            @click="toOutLink('https://github.com/star7th/showdoc/issues/1904')"
+          ></i>
         </el-tooltip>
       </el-form-item>
       <el-form-item :label="$t('oss_open')">
@@ -210,7 +238,9 @@ export default {
         history_version_count: 20,
         beian: '',
         show_watermark: false,
-        site_url: ''
+        site_url: '',
+        open_api_key: '',
+        open_api_host: ''
       },
       itemList: []
     }
@@ -254,6 +284,12 @@ export default {
         this.form.beian = data.data.beian ? data.data.beian : ''
         this.form.show_watermark = data.data.show_watermark > 0
         this.form.site_url = data.data.site_url ? data.data.site_url : ''
+        this.form.open_api_key = data.data.open_api_key
+          ? data.data.open_api_key
+          : ''
+        this.form.open_api_host = data.data.open_api_host
+          ? data.data.open_api_host
+          : ''
       })
     },
     getItemList() {

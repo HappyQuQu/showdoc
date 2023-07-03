@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+import './assets/element-variables.scss'
 import Header from '@/components/common/Header'
 import Footer from '@/components/common/Footer'
 import util from '@/util.js'
@@ -20,6 +20,8 @@ import 'babel-polyfill'
 import VueClipboard from 'vue-clipboard2'
 import store from './store/'
 import '../src/assets/tailwind.css' // 引入tailwind
+import SDialog from '@/components/common/Sdialog'
+import './assets/fontawesome.scss'
 
 Vue.use(util)
 Vue.config.productionTip = false
@@ -28,6 +30,9 @@ Vue.component('Footer', Footer)
 Vue.use(ElementUI)
 Vue.use(VueI18n)
 Vue.use(VueClipboard)
+
+// 注册为全局组件
+Vue.component('SDialog', SDialog)
 
 // 多语言相关
 var allZhLocale = Object.assign(zhLocale, myZhLocale)

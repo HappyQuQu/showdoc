@@ -1,4 +1,3 @@
-
 Sqlite/*.php
 
 Application/Runtime/
@@ -22,4 +21,4 @@ web_src/*.ntvs*
 web_src/*.njsproj
 web_src/*.sln
 
-Sqlite/showdoc.db.php
+showdocdata/
